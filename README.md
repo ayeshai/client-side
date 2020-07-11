@@ -1,2 +1,2 @@
 # clinet-side
-Foxtrot division stage 2 missio: login form
+Foxtrot division stage 2 mission: login form
