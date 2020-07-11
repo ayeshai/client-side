@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+	
+	<link rel = "stylesheet" href="style.css">
+</head>
+
+<body>
+	
+	<header class="video-h container">
+	
+	<!--	Video reference : https://www.videvo.net/video/hyperlapse-along-suspension-bridge/463062/-->
+		
+	<div id="Video-Container">
+		<video autoplay muted loop id = "backVideo"  width = "auto" height = "100%">
+		<source src="suspension-bridge.mp4" type="video/mp4">
+		</video>
+	</div>
+	
+	<div id = "video-overlay"> </div>
+	
+	<div id = "Logform-content"> 
+		<form action="selection.html"> 
+			
+			<label for= "username">User Name: </label>
+			<input type = "text" id="username" name ="username" required> <br>
+
+			<label for ="password"> Password: </label>
+			<input type = "password" id="password" name = "password" required> <br>
+
+			 <input type="button" id="logInB" onclick="submitform()" value="Submit" a href="selection.html" />
+		
+      	</form>
+	
+	
+	
+	
+	
+	<script> 
+		
+			function submitform(){
+				
+				var usname= document.getElementById("username");
+				var usrTxt=usname.value;
+				
+				
+				
+				var pass= document.getElementById("password").value;
+				//var passTxt=pass.outerHTML;
+				
+				var logIn = {
+					"username" : usrTxt, 
+					"password" : pass
+				}
+				
+				var data = JSON.stringify(logIn);
+				/*fetch ('http://206.189.225.44:3300/authenticate',{
+					mode : 'cors', 
+					
+					method : 'post',
+					body : data , 
+					header : 'Access-Control-Allow-Origin: *'
+				}). then(function (response){
+					return response.text();
+				}).then (function(text){
+					console.log(text);
+				}).catch ( function (error){
+					console.error(error);
+				})*/
+				
+				var testData ={
+					"username" : "vader@deathstar.com",
+					"password" : "p@ssw0rdP@ssw0rd"
+				}
+				var testRet ={
+					"status": "ok", 
+					"msg": "authenticated successfully", "code": "0", 
+					"data": null
+				}
+				
+				var testRetJ = JSON.stringify(testRet);
+				
+				
+				/*let response = await fetch ('http://206.189.225.44:3300/authenticate', {
+					
+					method: 'post',
+					headers: {'Content-Type' : 'application/json'},
+					body: data
+				});
+				
+				let result= await.response.toJson();
+				*/
+				console.log(data);
+				
+				var jtoobj = JSON.parse(testRetJ);
+								
+				//alert(result.message);
+				var chkStatus = jtoobj.status;
+				console.log(jtoobj.status);
+				
+				if (chkStatus = "ok"){
+					console.log("valid");
+					window.location.replace( 'selection.html')
+					
+
+				}else{
+					alert("invalid username and or password, please try again");
+
+				}
+
+			
+			}
+		
+		/*let response = await fetch ('http://206.189.225.44:3300/authenticate', {
+					
+					method: 'post',
+					headers: {'Content-Type' : 'application/json'},
+					body: data
+				});
+				
+				let result= await.response.toJson();*/
+				
+		
+		</script>
+		</div>
+
+
+	</header> 
+</body>
+</html>
