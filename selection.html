@@ -1,10 +1,163 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>selections</title>
-</head>
+	<head>
+		<meta charset="utf-8">
+		
+		<title>selections</title>
+	<link rel = "stylesheet" href="Select-style.css">
+		
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body>
-</body>
+	</head>
+
+	<body>
+		<!--
+
+Photo by Sanaan Mazhar from Pexels
+
+-->
+		<div id = "background"> 
+			
+			
+			</div>
+<div id= "Q-box-div"> <!--contact section-->
+	<div id = "error-message"></div>
+	<form id="q-form" >
+				
+
+				<p1>  Are employees authorized to use Foxtrot Division Airway’s information systems to access, or otherwise participate in, social media/networking sites? </p1> <br>
+				<input type="radio" class="q1" id = "yes" name = "q1" value="Yes" required>
+				<label for="yes"> Yes </label>
+				<input type="radio"  class="q1" id = "no" name = "q1" value="No"  >
+				<label for="no"> No </label> <br> <br>
+
+				<p1> What are the restrictions on the use of social media/networking sites? Select one (1) or more of the following options: </p1>	<br>
+
+				<input type="checkbox" class = "q2" id = "op1" name="q2" value="op1"  > 
+				<label for="op1" id="1"> Use must be consistent with all laws, regulations, and Foxtrot Division Airways policies</label> <br>
+
+				<input type="checkbox"  class = "q2" id = "op2" name="q2" value="op2" > 
+				<label for="op2" id="2">Employees may not post any Foxtrot Division Airway’s confidential, proprietary, or other sensitive information</label> <br>
+
+				<input type="checkbox" class = "q2" id = "op3" name="q2" value="op3" > 
+				<label for="op3" id="3">If expressing views, opinions, or other beliefs, the employee must provide a disclaimer that the views expressed are not those of Foxtrot Division Airways</label> <br>
+
+				<input type="checkbox" class = "q2" id = "op4" name="q2" > 
+				<label for="op4" > Other</label> 		<br>
+
+				<!--<input type="text" class = "q2" name="q2" id ="other" required> <br> -->
+				<textarea id= "other" class = "q2" name = "q2" placeholder = "Please explain"> </textarea>
+		<br>
+
+				 <input type="button" id="Btn-Next"  onclick= "submitNext()" value="Submit"  />
+			</form>
+			</div>
+		<script>
+		
+			function inputValidation(x,y){
+			var message = document.getElementById("error-message");
+				console.log(x ||y ==0);
+			if(x ==0 || y == 0){
+				message.style.padding = "10px";
+				message.innerHTML = "Please answer both questions";
+				return false;
+			}
+			return true;
+		}
+			
+		function postReq(response){
+			fetch('http://206.189.225.44:3300/authenticate', {
+			  method: 'post',
+			  body: response
+			})
+			.then(response => response.json())
+			.then(result => {
+			  console.log('Success:', result);
+			})
+			.catch(error => {
+			  console.error('Error:', error);
+			});
+			
+			
+			alert("Your response has been recorded");
+		}	
+		function submitNext(){
+				
+			var q2Selected=[];
+				
+				var q1res="";
+				
+				
+				var getLable = "\"";
+			var options=document.getElementsByName('q2');
+				console.log(options.length);
+			var q1ans= document.getElementsByName('q1');
+			console.log(q1ans.length);
+			
+			var counter = 0;
+			var counter2=0;
+			
+			for(var x=0; x<q1ans.length;x++){
+				if(q1ans[x].checked == true){
+					counter2++;
+					q1res=q1ans[x].value;
+				}
+			}
+				console.log(q1res);
+			
+				for(var i=0; i<options.length;i++){
+					if (options[i].checked==true){
+						
+						if(i==0){
+							
+							counter++;
+							q2Selected.push(document.getElementById("1").innerHTML);
+						}
+						else if(i==1){
+							counter++;
+							q2Selected.push(document.getElementById("2").innerHTML);
+						}
+						else if(i==2){
+							counter++;
+							q2Selected.push(document.getElementById("3").innerHTML);
+						}
+						
+						else if (i==4||3){
+							counter++;
+							q2Selected.push("other:"+document.getElementById('other').value);
+
+							}							
+					}
+				}
+			console.log(q2Selected);
+     				
+			
+				var response = {
+					"question1" : q1res, 
+					"question2" : q2Selected
+				}
+				var statusRet;
+				var data = JSON.stringify(response);
+			
+			console.log(data);
+			
+			console.log("counter" , counter);	
+			console.log("counter2" , counter2);
+				
+			var ret = inputValidation(counter, counter2);
+			if (ret){
+				window.location.replace('response.html');
+/*
+				postReq(response);
+*/
+			}
+			
+			
+
+			
+			}
+		
+		
+		</script>
+	</body>
 </html>
