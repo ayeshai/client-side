@@ -5,44 +5,62 @@
 <title>index</title>
 	
 	<link rel = "stylesheet" href="style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
 	
 	<header class="video-h container">
 	
-	<!--	Video reference : https://www.videvo.net/video/hyperlapse-along-suspension-bridge/463062/-->
+	<!--	Video reference :  Free Stock video by <a href="http://www.videezy.com">Videezy</a>  </a> -->
 		
 	<div id="Video-Container">
-		<video autoplay muted loop id = "backVideo"  width = "auto" height = "100%">
-		<source src="suspension-bridge.mp4" type="video/mp4">
+		<video autoplay muted loop id = "background_Video"  >
+		<source src="Videos/abstract_slowmotion1.mov" type="video/mp4">
 		</video>
 	</div>
 	
 	<div id = "video-overlay"> </div>
-	
-	<div id = "Logform-content"> 
-		<form action="selection.html"> 
+
+		<div id= "login-box"> 
+		
+		
+		<form action="selection.html" id = "Form-logIn"> 
+			<img src="Pictures/Foxtrot-logo.png" class = "logo"> <br>
 			
-			<label for= "username">User Name: </label>
+			<label for= "username">User Name </label> <br>
 			<input type = "text" id="username" name ="username" required> <br>
 
-			<label for ="password"> Password: </label>
+			<label for ="password"> Password </label> <br>
 			<input type = "password" id="password" name = "password" required> <br>
 
-			 <input type="button" id="logInB" onclick="submitform()" value="Submit" a href="selection.html" />
+			 <input type="submit" id="logInB" value="LogIn"   />
 		
       	</form>
-	
-	
+	</div>
+
 	
 	
 	
 	<script> 
 		
-			function submitform(){
-				
-				var usname= document.getElementById("username");
+		function postReq(logIn){
+			fetch('http://206.189.225.44:3300/authenticate', {
+			  method: 'post',
+			  body: logIn
+			})
+			.then(response => response.json())
+			.then(result => {
+			  console.log('Success:', result);
+			})
+			.catch(error => {
+			  console.error('Error:', error);
+			});
+		}
+			const getForm=document.getElementById('Form-logIn');
+				getForm.addEventListener('submit', function(e){
+					var usname= document.getElementById("username");
 				var usrTxt=usname.value;
 				
 				
@@ -51,80 +69,22 @@
 				//var passTxt=pass.outerHTML;
 				
 				var logIn = {
-					"username" : usrTxt, 
+					"email" : usrTxt, 
 					"password" : pass
 				}
+				console.log(logIn);
 				
-				var data = JSON.stringify(logIn);
-				/*fetch ('http://206.189.225.44:3300/authenticate',{
-					mode : 'cors', 
-					
-					method : 'post',
-					body : data , 
-					header : 'Access-Control-Allow-Origin: *'
-				}). then(function (response){
-					return response.text();
-				}).then (function(text){
-					console.log(text);
-				}).catch ( function (error){
-					console.error(error);
-				})*/
-				
-				var testData ={
-					"username" : "vader@deathstar.com",
-					"password" : "p@ssw0rdP@ssw0rd"
-				}
-				var testRet ={
-					"status": "ok", 
-					"msg": "authenticated successfully", "code": "0", 
-					"data": null
-				}
-				
-				var testRetJ = JSON.stringify(testRet);
-				
-				
-				/*let response = await fetch ('http://206.189.225.44:3300/authenticate', {
-					
-					method: 'post',
-					headers: {'Content-Type' : 'application/json'},
-					body: data
-				});
-				
-				let result= await.response.toJson();
-				*/
-				console.log(data);
-				
-				var jtoobj = JSON.parse(testRetJ);
-								
-				//alert(result.message);
-				var chkStatus = jtoobj.status;
-				console.log(jtoobj.status);
-				
-				if (chkStatus = "ok"){
-					console.log("valid");
-					window.location.replace( 'selection.html')
-					
-
-				}else{
-					alert("invalid username and or password, please try again");
-
-				}
-
-			
-			}
+				postReq(logIn);	
 		
-		/*let response = await fetch ('http://206.189.225.44:3300/authenticate', {
-					
-					method: 'post',
-					headers: {'Content-Type' : 'application/json'},
-					body: data
-				});
-				
-				let result= await.response.toJson();*/
+			window.location.replace('selection.html');
+			
+			});
+							
+			
 				
 		
 		</script>
-		</div>
+		
 
 
 	</header> 

@@ -12,7 +12,21 @@ body {
 	line-height: 1.5;
 	color: #7E8EC2;
 	overflow-x: hidden;
+	font-weight: 200;
 }
+/*@media (min-aspect-ratio: 16/9){
+	#background_Video{
+		width: 100%;
+		height: auto;
+	}
+}
+@media (min-aspect-ratio: 16/9){
+	#background_Video{
+		width: auto;
+		height: 100%;
+	}
+}*/
+
 .video-h {
 	height: 100vh;
 	display: flex;
@@ -35,58 +49,123 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	overflow: hidden;
-	z-index: -1;
+	z-index: -2;
 }
 #background_Video backVideo{
 	min-width: 100%;
 	min-height: 100%;
-	width: auto;
+	width:auto;
 	height: auto;
 	position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
-
 #video-overlay {
-	height: 100%;
-	width: 100%;
+	height: 100vh;
+	width: 100vw;
 	top: 0;
 	left: 0;
 	position: absolute;
 	overflow: hidden;
-	background: #D3D6F4;
-	z-index: 1;
-	opacity: 0.2; 
+	background:#CEA8CF;
+	z-index: -1;
+	opacity: 0.6; 
 	
 	/*
 	Change opacity
 	*/
 }
-#Logform-content {
-	z-index: 2;
-}
+
 #logInB{
-	width: 150px;
+	width: 160px;
 	height: 60px;
-	border: 5px solid #7979B1;
+	border: 2px solid #7979B1;
 	background-color: #B5B4CD;
 	padding: 10px 20px;
 	font-weight: 700;
 	text-transform: uppercase;
 	font-family: 'Open Sans', sans-serif;
 	cursor: pointer;
-	margin: 10px;
 	font-size: 16px;
 	transition: 0.8s;
 	background: url("../../Desktop/testgrad.png");
-    border-radius: 1px;
+	background-size:auto;
+    border-radius: 0.5px;
 	text-align: center;
+	color: #fff;
+	
 }
 
 #logInB:hover {
-  opacity: 0.6;
+  opacity: 0.8;
+}
+#login-box{
+	width: 70%;
+	
+	max-width: 320px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 55px;
+	box-sizing: border-box;
+	box-shadow: 0 2px 20px pink;
+	background: rgba(51, 51, 153,.4);
+	height: 420px;
+	align-items :center;
+	text-align: center;
+	z-index: 1;
+	display: flex
+	
+	
+	/*bottom: 50%;
+	top: 50%;
+	position: absolute;
+	box-sizing: border-box;
+	width: 320px;
+	transform: translate(60%, -40%);
+	padding: 0 80px ;
+	display: flex;*/
+}
+
+.logo {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position:relative;
+	top: -70px;
+
+
+	}
+form {
+	
+	width: 200px;
+	
+}
+#login-box input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+#login-box input[type = "text"], input[type = "password"]{
+	border: none;
+	border-bottom: 1px solid #fff;
+	background-color: transparent;
+	outline: none;
+	height: 40px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color:#F3C3F2;
+}
+#login-box input[type="submit"]{
+	color:#FFFFFF;	
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+	font-weight: 200;
+
 
 }
+
+
