@@ -1,6 +1,8 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
 /* CSS Document */
+
+/* CSS Document */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
 *{
 	margin: 0;
 	padding: 0;
@@ -13,12 +15,12 @@ body{
 	background-size:cover;
 	background-position: center;
 	background-repeat: no-repeat;
+	color: #742180;
 	
 }
 #Q-box-div{
 	background: #FFFFFF;
 	width: 95%;
-	
 	max-width: 600px;
 	position: absolute;
 	top: 50%;
@@ -27,51 +29,6 @@ body{
 	padding: 30px;
 	box-sizing: border-box;
 	box-shadow: 0 2px 20px pink;
-
-	/*top: 50%;
-	bottom: 50%;
-	*/
-	
-	/*box-sizing: border-box;
-	padding: 0 80px ;
-	display: flex;
-		padding: 40px 0;
-	align-items :center;*/
-}
-#q-form p1{
-	text-align: center;
-	color: #742180;
-	font-size: 20px;
-}
-
-#q-form {
-	max-width: 500px;
-	margin: auto;
-	padding: 0 10px;
-	overflow: hidden;
-}
-
-#Btn-Next{
-	width: 100%;
-	height: 60px;
-	border: 2px solid #7979B1;
-	background-color: #B5B4CD;
-	font-weight: 700;
-	text-transform: uppercase;
-	font-family: 'Open Sans', sans-serif;
-	cursor: pointer;
-	font-size: 20px;
-	transition: 0.8s;
-	background: url("Pictures/testgrad.png");
-	background-size:auto;
-    border-radius: 0.5px;
-	text-align: center;
-	color: #FFFFFF;
-	padding: 10px 20px;	
-}
-
-#Btn-Next:hover {
-  opacity: 0.8;
 }
 #background {
 	height: 100%;
@@ -84,26 +41,4 @@ body{
 	z-index: -1;
 	opacity: 0.85; 
 	
-}
-#q-form input{
-
-	margin-bottom: 3px;
-	padding: 10px;
-}
-#q-form input[type="radio"], input[type = "checkbox"] {
-	padding: 10px;
-}
-textarea{
-	width: 95%;
-	padding: 10px;
-	border: 1px solid gray;
-	margin-bottom: 20px;
-	resize: none;
-}
-#error-message{
-	margin-bottom: 20px;
-	padding: 0px;
-	background:#D3585A;
-	transition: all 0.7s ease;
-	color:  white;
 }
